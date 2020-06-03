@@ -61,6 +61,41 @@ var endGame = function() {
             window.alert("Thanks for playing!")
         }
     };
+var shop = function() {
+    var shopChoice = window.prompt(
+        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the shop?"
+    );
+    switch(shopChoice){
+        case "REFILL":
+        case "refill":
+            if (playerMoney > 3){
+                playerHealth += 20
+                playerMoney -= 4
+                window.alert("Your health is now "+playerHealth+". Your money is now "+playerMoney+".")
+            }
+            else{window.alert("You don't have enough money!")}
+            break;
+        case "UPGRADE":    
+        case "upgrade":
+            if (playerMoney > 4 ){    
+                playerAttack += 5
+                playerMoney -= 5
+                window.alert("Your attack is now "+playerAttack+". Your money is now "+playerMoney+".")}
+                else{window.alert("You don't have enough money!")}
+            break;
+        case "LEAVE":
+        case "":    
+        case "leave":
+            window.alert("Leaving the store.")
+            break;
+        default:
+            window.alert("You did not pick a valid option")
+            shop()
+            break;
+        
+    }
+
+};
 var startGame = function() {
     playerHealth = 100
     playerAttack = 10
@@ -69,6 +104,13 @@ var startGame = function() {
         window.alert("Welcome to Robot Gladiators! Round " + (Number(x) +1));
         enemyHealth = 50
         fight(enemyNames[x])
+        if (playerHealth < 1){break}
+        if ( x < enemyNames.length -1){
+            var storeConfirm = window.confirm("The fight is over, visiit the shop?")
+            if (storeConfirm){
+            shop();
+            }
+        }
     } 
     endGame()
 };
