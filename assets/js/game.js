@@ -6,12 +6,11 @@ var playerMoney = 10;
 console.log(playerName, playerAttack, playerHealth);
 
 var enemyNames = ["Roborto","Amy Android","Robo Trumble"];
-console.log(enemyNames)
+console.log(enemyNames);
 var enemyHealth = 50;
 var enemyAttack = 12;
 
 var fight = function(enemyName) {
-//   window.alert("Welcome to Robot Gladiators!");
     var promptFight = window.prompt("Would you like to FIGHT or SKIP this battle?");
     while(enemyHealth > 0){
     if (promptFight == 'fight' || promptFight == "FIGHT") {
@@ -42,17 +41,38 @@ var fight = function(enemyName) {
             break;
             }
             else {fight()}
-        } else {window.alert("You need to pick a valid option. Try again!")}
+        } else {
+            window.alert("You need to pick a valid option. Try again!")
+            break;}
 }};
 
-for (x in enemyNames){
-    enemyHealth = 50
-    fight(enemyNames[x]);
-    if (playerHealth < 1){
-        window.alert("You have lost!")
-        break;
+var endGame = function() {
+    if (playerHealth > 0) {
+        window.alert("You win! Your score was "+playerMoney);
     }
-}
+    else{
+        window.alert("You have lost! Your score was "+playerMoney)+".";
+    }
+    var playAgain = window.confirm("Would you like to play again?");
+    if (playAgain){
+        startGame()
+    }
+        else {
+            window.alert("Thanks for playing!")
+        }
+    };
+var startGame = function() {
+    playerHealth = 100
+    playerAttack = 10
+    playerMoney = 10
+    for (x in enemyNames){
+        window.alert("Welcome to Robot Gladiators! Round " + (Number(x) +1));
+        enemyHealth = 50
+        fight(enemyNames[x])
+    } 
+    endGame()
+};
 
+startGame();
 
 
