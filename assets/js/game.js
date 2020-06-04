@@ -63,11 +63,20 @@ var randomNumber = function(min,max){
     return value
 }
 var endGame = function() {
+    var score = Math.max(playerInfo.money,0)
+    var highScore = localStorage.getItem('highScore')
     if (playerInfo.health > 0) {
-        window.alert("You win! Your score was "+playerInfo.money);
+        window.alert("You win! Your score was "+ score);
     }
     else{
-        window.alert("You have lost! Your score was "+playerInfo.money)+".";
+        window.alert("You have lost! Your score was " + score + ".");
+    }
+    if (score > highScore) {
+        window.alert("You got the high score!")
+        localStorage.setItem("highScore",score)
+    }
+    else {
+        window.alert("You didn't get the high score! The high score is currently " + highScore + ".")
     }
     var playAgain = window.confirm("Would you like to play again?");
     if (playAgain){
