@@ -78,21 +78,19 @@ var endGame = function() {
         }
     };
 var shop = function() {
-    var shopChoice = window.prompt(
-        "Would you like to REFILL your health, UPGRADE your attack, or LEAVE the shop?"
-    );
+    var shopChoice = window.prompt("Would you like to REFILL your health, UPGRADE your attack, or LEAVE the shop?").toLowerCase();
     switch(shopChoice){
-        case "REFILL":
+        case "1":
         case "refill":
             playerInfo.refillHealth()
             window.alert("Your health is now "+playerInfo.health+". Your money is now "+playerInfo.money+".")
             break;
-        case "UPGRADE":    
+        case "2":    
         case "upgrade":
             playerInfo.upgradeAttack()
             window.alert("Your attack is now " + playerInfo.attack + ".")
             break;
-        case "LEAVE":
+        case "3":
         case "":    
         case "leave":
             window.alert("Leaving the store.")
